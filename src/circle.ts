@@ -1,4 +1,4 @@
-import { Button, mouse, MouseClass, Point, straightTo } from "@nut-tree/nut-js";
+import { Button, mouse, Point, straightTo } from "@nut-tree/nut-js";
 
 export const drawCircle = async ( r: number ) => {
   let { x, y } = await mouse.getPosition();

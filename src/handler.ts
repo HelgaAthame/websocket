@@ -1,6 +1,7 @@
 import WebSocket from "ws";
 import { mouseMove } from './mouseMove.js';
 import { drawCircle } from './circle.js';
+import { drawSquare } from './square.js';
 
 export const handlerFunc = (data: WebSocket.RawData) => {
   console.log(`we received ${data}`);
@@ -10,6 +11,9 @@ export const handlerFunc = (data: WebSocket.RawData) => {
   }
   if (string.startsWith('draw_circle')) {
     drawCircle(Number(string.slice(11)));
+  }
+  if (string.startsWith('draw_square')) {
+    drawSquare(Number(string.slice(11)));
   }
   return 5;
 }
