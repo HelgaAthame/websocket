@@ -12,12 +12,14 @@ const wss = new WebSocketServer({
 
 wss.on('connection', ws => {
   console.log('new client connected');
-  ws.on('message', data => {
+  ws.on('message', async data => {
     console.log('received: %s', data);
-    const result = handlerFunc(data);
-    if (result) ws.send(result);
+    const result = await handlerFunc(data);
+    console.log(result);
+    if (result) {
+      ws.send(result);
+    }
   })
-  //ws.send('kuku');
 });
 
 wss.on('close', () => {
