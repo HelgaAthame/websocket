@@ -5,21 +5,23 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "node ./index.js",
+        "start": "ts-node-esm ./index.ts",
         "start:dev": "nodemon ./index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint . --ext .ts"
     },
-    "author": "Andrei Auchynnikau",
+    "author": "",
     "keywords": [],
     "license": "ISC",
     "devDependencies": {
-        "nodemon": "^2.0.16",
+        "@nut-tree/nut-js": "^2.3.0",
         "@typescript-eslint/eslint-plugin": "^5.46.0",
         "@typescript-eslint/parser": "^5.46.0",
         "eslint": "^8.29.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-prettier": "^4.2.1",
+        "jimp": "^0.16.2",
+        "nodemon": "^2.0.16",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.4"
     },
