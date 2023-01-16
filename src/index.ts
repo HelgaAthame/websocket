@@ -15,7 +15,6 @@ wss.on('connection', ws => {
   ws.on('message', async data => {
     console.log('received: %s', data);
     const result = await handlerFunc(data);
-    console.log(result);
     if (result) {
       ws.send(result);
     }

@@ -3,8 +3,9 @@ import { mouseMove } from './mouseMove.js';
 import { drawCircle } from './circle.js';
 import { drawSquare } from './square.js';
 import { drawRectangle } from './rectangle.js';
+import { screenshot } from './screenshot.js';
 
-export const handlerFunc = (data: WebSocket.RawData) => {
+export const handlerFunc = async (data: WebSocket.RawData) => {
   console.log(`we received ${data}`);
   const string = data.toString();
   if (string.startsWith('mouse')) {
@@ -20,5 +21,8 @@ export const handlerFunc = (data: WebSocket.RawData) => {
     const arr = string.split(' ').map( el => Number(el) );
     drawRectangle(arr[1], arr[2]);
   }
-  return 5;
+  if (string.startsWith('prnt_scrn')) {
+    const result = await screenshot();
+    return `prnt_scrn ${result}`;
+  }
 }
