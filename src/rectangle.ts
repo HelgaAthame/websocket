@@ -1,7 +1,17 @@
-import { Button, mouse, Point, straightTo } from "@nut-tree/nut-js";
+import { Button, mouse, Point, straightTo, screen } from "@nut-tree/nut-js";
 
 export const drawRectangle = async ( a: number, b: number ) => {
   let { x, y } = await mouse.getPosition();
+
+  //check for exceptions
+  const h = await screen.height();
+  const w = await screen.width();
+  if (x + a > w
+    || y + b > h) {
+      console.log('\r\n!!! Rectangle goes off screen !!!\r\n');
+      return;
+    }
+
   mouse.config.mouseSpeed = 1000;
   await mouse.pressButton(Button.LEFT);
   for ( let i = 0; i < b; i++ ) {

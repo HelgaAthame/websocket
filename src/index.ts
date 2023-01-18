@@ -13,7 +13,6 @@ const wss = new WebSocketServer({
 wss.on('connection', ws => {
   console.log('new client connected');
   ws.on('message', async data => {
-    console.log('received: %s', data);
     const result = await handlerFunc(data);
     if (result) {
       ws.send(result);

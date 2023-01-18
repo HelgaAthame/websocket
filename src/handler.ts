@@ -6,7 +6,6 @@ import { drawRectangle } from './rectangle.js';
 import { screenshot } from './screenshot.js';
 
 export const handlerFunc = async (data: WebSocket.RawData) => {
-  console.log(`we received ${data}`);
   const string = data.toString();
   if (string.startsWith('mouse')) {
     return mouseMove(string);
@@ -23,6 +22,6 @@ export const handlerFunc = async (data: WebSocket.RawData) => {
   }
   if (string.startsWith('prnt_scrn')) {
     const result = await screenshot();
-    return `prnt_scrn ${result}`;
+    if (result) return `prnt_scrn ${result}`;
   }
 }

@@ -1,7 +1,19 @@
-import { Button, mouse, Point, straightTo } from "@nut-tree/nut-js";
+import { Button, mouse, Point, straightTo, screen } from "@nut-tree/nut-js";
 
 export const drawCircle = async ( r: number ) => {
   let { x, y } = await mouse.getPosition();
+
+  //check for exceptions
+  const h = await screen.height();
+  const w = await screen.width();
+  if (x < r*2
+    || y < r
+    || x > w
+    || y + r > h) {
+      console.log('\r\n!!! Circle goes off screen !!!\r\n');
+      return;
+    }
+
   x -= r;
   mouse.config.mouseSpeed = 1000;
   await mouse.pressButton(Button.LEFT);
