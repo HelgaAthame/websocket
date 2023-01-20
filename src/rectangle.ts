@@ -9,7 +9,7 @@ export const drawRectangle = async ( a: number, b: number ) => {
   if (x + a > w
     || y + b > h) {
       console.log('\r\n!!! Rectangle goes off screen !!!\r\n');
-      return;
+      return '!!!_Rectangle_goes_off_screen_!!!';
     }
 
   mouse.config.mouseSpeed = 1000;

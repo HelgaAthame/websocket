@@ -12,13 +12,12 @@ export const screenshot = async () => {
   if (x + size > w
     || y + size > h) {
       console.log('\r\n!!! Screenshot goes off screen !!!\r\n');
-      return;
+      return '!!!_Screenshot_goes_off_screen_!!!';
     }
 
   const region = new Region(x, y, size, size);
   const image = await screen.grabRegion(region);
   const rgb = await image.toRGB();
-  console.log(rgb);
   const jimpImage = new Jimp({
     data: rgb.data,
     width: rgb.width,

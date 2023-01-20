@@ -11,7 +11,7 @@ export const drawCircle = async ( r: number ) => {
     || x > w
     || y + r > h) {
       console.log('\r\n!!! Circle goes off screen !!!\r\n');
-      return;
+      return '!!!_Circle_goes_off_screen_!!!';
     }
 
   x -= r;

@@ -9,7 +9,7 @@ export const drawSquare = async ( a: number ) => {
   if (x + a > w
     || y + a > h) {
       console.log('\r\n!!! Square goes off screen !!!\r\n');
-      return;
+      return '!!!_Square_goes_off_screen_!!!';
     }
 
   mouse.config.mouseSpeed = 1000;

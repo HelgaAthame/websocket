@@ -11,17 +11,18 @@ export const handlerFunc = async (data: WebSocket.RawData) => {
     return mouseMove(string);
   }
   if (string.startsWith('draw_circle')) {
-    drawCircle(Number(string.slice(11)));
+    return await drawCircle(Number(string.slice(11)));
   }
   if (string.startsWith('draw_square')) {
-    drawSquare(Number(string.slice(11)));
+    return await drawSquare(Number(string.slice(11)));
   }
   if (string.startsWith('draw_rectangle')) {
     const arr = string.split(' ').map( el => Number(el) );
-    drawRectangle(arr[1], arr[2]);
+    return await drawRectangle(arr[1], arr[2]);
   }
   if (string.startsWith('prnt_scrn')) {
     const result = await screenshot();
+    if (result === '!!!_Screenshot_goes_off_screen_!!!') return result;
     if (result) return `prnt_scrn ${result}`;
   }
 }

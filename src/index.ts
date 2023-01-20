@@ -1,5 +1,5 @@
 import { httpServer } from "./http_server/index.js";
-import WebSocket, { WebSocketServer } from 'ws';
+import { createWebSocketStream, WebSocketServer } from 'ws';
 
 import { mouseMove } from './mouseMove';
 import  { handlerFunc } from './handler.js';
@@ -12,17 +12,18 @@ const wss = new WebSocketServer({
 
 wss.on('connection', ws => {
   console.log('new client connected');
-  ws.on('message', async data => {
+  const wsStream = createWebSocketStream(ws, { encoding: 'utf8', decodeStrings: false});
+  wsStream.on('data', async data => {
     const result = await handlerFunc(data);
     if (result) {
-      ws.send(result);
+      wsStream.write(result);
     }
   })
 });
 
 wss.on('close', () => {
   console.log('websocket is closed');
-  //закрытие соединения
+  process.exit();
 });
 
 console.log(`Start static http server on the ${HTTP_PORT} port!`);
