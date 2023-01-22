@@ -19,11 +19,16 @@ wss.on('connection', ws => {
       wsStream.write(result);
     }
   })
-});
 
 wss.on('close', () => {
   console.log('websocket is closed');
   process.exit();
+});
+
+process.on('SIGINT', () => {
+  console.log('websocket is closed');
+  wss.close();
+  })
 });
 
 console.log(`Start static http server on the ${HTTP_PORT} port!`);
