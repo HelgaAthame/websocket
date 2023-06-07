@@ -5,15 +5,19 @@ export const mouseMove = async (str: string) => {
   switch (where[0]) {
     case 'up':
         await mouse.move(up(Number(where[1])));
+        return `${str}px`;
       break;
     case 'down':
         await mouse.move(down(Number(where[1])));
+        return `${str}px`;
       break;
     case 'left':
         await mouse.move(left(Number(where[1])));
+        return `${str}px`;
       break;
     case 'right':
         await mouse.move(right(Number(where[1])));
+        return `${str}px`;
       break;
     case 'position':
         const { x, y } = await mouse.getPosition();

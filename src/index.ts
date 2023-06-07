@@ -1,7 +1,6 @@
 import { httpServer } from "./http_server/index.js";
 import { createWebSocketStream, WebSocketServer } from 'ws';
 
-import { mouseMove } from './mouseMove';
 import  { handlerFunc } from './handler.js';
 
 const HTTP_PORT = 8181;
@@ -19,16 +18,16 @@ wss.on('connection', ws => {
       wsStream.write(result);
     }
   })
+});
 
 wss.on('close', () => {
   console.log('websocket is closed');
-  process.exit();
+  process.exit(0);
 });
 
 process.on('SIGINT', () => {
   console.log('websocket is closed');
   wss.close();
-  })
 });
 
 console.log(`Start static http server on the ${HTTP_PORT} port!`);
